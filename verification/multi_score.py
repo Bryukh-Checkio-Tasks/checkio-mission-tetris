@@ -30,7 +30,6 @@ class CheckiORefereeMultiScore(CheckiORefereeMulti):
         if not is_win_result:
             self.test_current_step()
         else:
-            self.total_score += self.referee_data["total_score"]
             if self.next_env():
                 self.restart_env()
             else:
