@@ -1,10 +1,23 @@
 from checkio.referees.multicall import CheckiORefereeMulti
 from checkio import api
 
+
+REQ = 'req'
+REFEREE = 'referee'
+from checkio.signals import PROCESS_ENDED
+
 class CheckiORefereeMultiScore(CheckiORefereeMulti):
     def __init__(self, *args, **kwargs):
         self.total_score = 0
         super().__init__(*args, **kwargs)
+
+    def on_ready(self, data):
+        self.code = data['code']
+        self.runner = data['runner']
+        self.seed = data.get("seed", "checkio")
+        self.start_env()
+
+        api.add_process_listener(REQ, PROCESS_ENDED, self.process_req_ended)
 
     def check_current_test(self, data):
         user_result = data['result']
