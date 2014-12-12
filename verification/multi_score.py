@@ -15,6 +15,7 @@ class CheckiORefereeMultiScore(CheckiORefereeMulti):
         self.code = data['code']
         self.runner = data['runner']
         self.seed = data.get("seed", "checkio")
+        api.request_write_ext(self.seed)
         self.start_env()
 
         api.add_process_listener(REQ, PROCESS_ENDED, self.process_req_ended)

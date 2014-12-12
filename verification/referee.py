@@ -56,6 +56,8 @@ api.add_listener(
             'python-3': cover
         },
         initial_referee=init,
+        process_referee=None,
+        is_win_referee=None
         # checker=None,  # checkers.float.comparison(2)
         # add_allowed_modules=[],
         # add_close_builtins=[],
